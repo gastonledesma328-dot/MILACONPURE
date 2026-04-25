@@ -1,0 +1,26 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "uvicorn api:app --host 0.0.0.0 --port $PORT"
+
+[phases.setup]
+nixPkgs = [
+  "chromium",
+  "nss",
+  "atk",
+  "at-spi2-atk",
+  "cups",
+  "dbus",
+  "libdrm",
+  "xkbcommon",
+  "gtk3",
+  "libxshmfence",
+  "mesa"
+]
+
+[phases.install]
+cmds = [
+  "pip install -r requirements.txt",
+  "playwright install chromium"
+]
